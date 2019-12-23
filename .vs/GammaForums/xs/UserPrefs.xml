@@ -1,24 +1,35 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="GammaForums.Data/Class1.cs">
+﻿<Properties StartupConfiguration="{FB944522-478A-4AA0-B0CE-2DDD4CAAD136}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GammaForums.Data/Models/Forum.cs">
     <Files>
-      <File FileName="GammaForums.Data/Class1.cs" Line="9" Column="1" />
+      <File FileName="GammaForums.Data/ApplicationDbContext.cs" Line="11" Column="1" />
+      <File FileName="GammaForums.Data/Models/Forum.cs" Line="7" Column="54" />
+      <File FileName="Startup.cs" Line="31" Column="10" NotebookId="1" />
+      <File FileName="Program.cs" Line="1" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GammaForums" expanded="True">
-            <Node name="GammaForums" selected="True" />
+            <Node name="GammaForums" expanded="True">
+              <Node name="GammaForums.Data" expanded="True">
+                <Node name="Models" expanded="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+            <Node name="GammaForums.Data" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="Forum.cs" selected="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.GammaForums.Data FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <DisabledProjects>
-    <String>GammaForums.Data/GammaForums.Data.csproj</String>
-    <String>GammaForums.csproj</String>
-  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.GammaForums PreferredExecutionTarget="/Applications/Chromium.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
