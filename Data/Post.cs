@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GammaForums.Data.Models
+namespace Data
 {
     /// <summary>
     /// Represents a post made on a forum

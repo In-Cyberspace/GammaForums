@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GammaForums.Data.Models
+namespace Data
 {
     /// <summary>
     /// Represents a forum created in the application

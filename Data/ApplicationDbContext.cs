@@ -1,8 +1,7 @@
-﻿using GammaForums.Data.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace GammaForums.Data
+namespace Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

@@ -1,1 +1,1 @@
-A forum web application
+Forums web application

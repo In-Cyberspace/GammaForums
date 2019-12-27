@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GammaForums.Data.Models
+namespace Data
 {
     /// <summary>
     /// Represents a reply made to a post on a forum
