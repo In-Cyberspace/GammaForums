@@ -1,25 +1,20 @@
-﻿<Properties StartupConfiguration="{FB944522-478A-4AA0-B0CE-2DDD4CAAD136}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GammaForums.Data/Models/Forum.cs">
+﻿<Properties StartupConfiguration="{89D679D6-520F-4FF0-A64C-E4C387D2FC87}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.Development.json">
     <Files>
-      <File FileName="GammaForums.Data/ApplicationDbContext.cs" Line="11" Column="1" />
-      <File FileName="GammaForums.Data/Models/Forum.cs" Line="7" Column="54" />
-      <File FileName="Startup.cs" Line="31" Column="10" NotebookId="1" />
-      <File FileName="Program.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Startup.cs" Line="18" Column="2" />
+      <File FileName="Program.cs" />
+      <File FileName="appsettings.Development.json" Line="3" Column="73" />
+      <File FileName="appsettings.json" Line="1" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GammaForums" expanded="True">
             <Node name="GammaForums" expanded="True">
-              <Node name="GammaForums.Data" expanded="True">
-                <Node name="Models" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="Migrations" expanded="True" />
               </Node>
               <Node name="appsettings.json" expanded="True" />
-            </Node>
-            <Node name="GammaForums.Data" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="Forum.cs" selected="True" />
-              </Node>
             </Node>
           </Node>
         </State>
