@@ -1,37 +1,31 @@
 ﻿<Properties StartupConfiguration="{89D679D6-520F-4FF0-A64C-E4C387D2FC87}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Forum/ForumListingModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Post/PostListingModel.cs">
     <Files>
-      <File FileName="Views/Forum/Index.cshtml" Line="17" Column="21" />
-      <File FileName="Startup.cs" />
-      <File FileName="Controllers/HomeController.cs" />
-      <File FileName="Views/Home/Privacy.cshtml" />
+      <File FileName="GammaForums.Service/ForumService.cs" Line="43" Column="1" />
+      <File FileName="Controllers/ForumController.cs" Line="21" Column="35" />
+      <File FileName="Models/Post/PostListingModel.cs" Line="1" Column="32" />
       <File FileName="Models/Forum/ForumListingModel.cs" Line="10" Column="1" NotebookId="1" />
-      <File FileName="Controllers/ForumController.cs" NotebookId="1" />
-      <File FileName="Models/Forum/ForumIndexModel.cs" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GammaForums" expanded="True">
             <Node name="GammaForums" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True">
-                  <Node name="Pages" expanded="True" />
-                </Node>
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
               </Node>
               <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="Models" expanded="True" />
+              </Node>
               <Node name="GammaForums.Service" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Forum" expanded="True">
-                  <Node name="ForumListingModel.cs" selected="True" />
+                <Node name="Forum" expanded="True" />
+                <Node name="Post" expanded="True">
+                  <Node name="PostListingModel.cs" selected="True" />
                 </Node>
               </Node>
-              <Node name="Views" expanded="True">
-                <Node name="Forum" expanded="True" />
-                <Node name="Home" expanded="True" />
-              </Node>
             </Node>
-            <Node name="GammaForums.Service" expanded="True" />
           </Node>
         </State>
       </Pad>

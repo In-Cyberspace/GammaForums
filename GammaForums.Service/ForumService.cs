@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Data;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +38,15 @@ namespace GammaForums.Service
 
         public Forum GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context
+            .Forums
+            .Where(f => f.Id == id)
+            .Include(f => f.Posts)
+            .ThenInclude(p => p.User)
+            .Include(f => f.Posts)
+            .ThenInclude(p => p.Replies)
+            .ThenInclude(r => r.User)
+            .FirstOrDefault();
         }
 
         public Task UpdateForumDescription(int forumId, string newDescription)

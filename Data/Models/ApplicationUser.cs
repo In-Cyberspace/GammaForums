@@ -1,28 +1,16 @@
-﻿namespace Data
+﻿using System;
+using Microsoft.AspNetCore.Identity;
+
+namespace Data
 {
     /// <summary>
-    /// Represents a user of the forum
+    /// Represents a registered user
     /// </summary>
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
-        /// <summary>
-        /// The unique identifier associated with the user
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
-        /// The user's name
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The user's surname
-        /// </summary>
-        public string Surname { get; set; }
-
-        /// <summary>
-        /// The user's email
-        /// </summary>
-        public string Email { get; set; }
+        public int Rating { get; set; }
+        public string ProfileImageUrl { get; set; }
+        public DateTime MemberSince { get; set; }
+        public bool IsActive { get; set; }
     }
 }
