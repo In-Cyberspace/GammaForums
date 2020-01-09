@@ -20536,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Forum/Topic.cshtml",
+      "TargetPath": "Views/Forum/Topic.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Home/Privacy.cshtml",
       "TargetPath": "Views/Home/Privacy.cshtml",
       "FileKind": "mvc"
