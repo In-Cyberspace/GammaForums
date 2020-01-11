@@ -1,31 +1,34 @@
 ﻿<Properties StartupConfiguration="{89D679D6-520F-4FF0-A64C-E4C387D2FC87}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Post/PostListingModel.cs">
+  <MonoDevelop.Ide.ItemProperties.GammaForums.Base FirstBuild="True" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GammaForums.Service/obj/Debug/netcoreapp3.1/GammaForums.Service.AssemblyInfo.cs">
     <Files>
-      <File FileName="GammaForums.Service/ForumService.cs" Line="43" Column="1" />
-      <File FileName="Controllers/ForumController.cs" Line="21" Column="35" />
-      <File FileName="Models/Post/PostListingModel.cs" Line="1" Column="32" />
-      <File FileName="Models/Forum/ForumListingModel.cs" Line="10" Column="1" NotebookId="1" />
+      <File FileName="Models/Post/PostListingModel.cs" Line="2" Column="1" />
+      <File FileName="Models/Forum/ForumListingModel.cs" Line="12" Column="7" NotebookId="1" />
+      <File FileName="GammaForums.Service/obj/Debug/netcoreapp3.1/GammaForums.Service.AssemblyInfo.cs" Line="14" Column="12" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GammaForums" expanded="True">
             <Node name="GammaForums" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True">
-                <Node name="Models" expanded="True" />
-              </Node>
-              <Node name="GammaForums.Service" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Forum" expanded="True" />
-                <Node name="Post" expanded="True">
-                  <Node name="PostListingModel.cs" selected="True" />
+              <Node name="GammaForums.Base" expanded="True" />
+              <Node name="GammaForums.Service" expanded="True">
+                <Node name="obj" expanded="True">
+                  <Node name="Debug" expanded="True">
+                    <Node name="netcoreapp3.1" expanded="True" selected="True" />
+                  </Node>
                 </Node>
               </Node>
+              <Node name="Models" expanded="True">
+                <Node name="Forum" expanded="True" />
+                <Node name="Post" expanded="True" />
+              </Node>
             </Node>
+            <Node name="GammaForums.Base" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+            <Node name="GammaForums.Service" expanded="True" />
           </Node>
         </State>
       </Pad>

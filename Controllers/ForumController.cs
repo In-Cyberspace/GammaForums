@@ -11,7 +11,6 @@ namespace GammaForums.Controllers
     public class ForumController : Controller
     {
         private readonly IForum _forumService;
-        private readonly IPost _postService;
 
         private ForumListingModel BuildForumListing(Forum forum)
         {
@@ -37,23 +36,24 @@ namespace GammaForums.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var forums = _forumService
-                .GetAll()
-                .Select(forum => new ForumListingModel
+            return View(
+                new ForumIndexModel
                 {
-                    Id = forum.Id,
-                    Title = forum.Title,
-                    Description = forum.Description
+                    ForumList =
+                    _forumService
+                    .GetAll()
+                    .Select(forum => new ForumListingModel
+                    {
+                        Id = forum.Id,
+                        Title = forum.Title,
+                        Description = forum.Description
+                    })
                 });
-
-            var model = new ForumIndexModel { ForumList = forums };
-
-            return View(model);
         }
 
         public IActionResult Topic(int id)
         {
-            var forum = _forumService.GetById(id);
+            Forum forum = _forumService.GetById(id);
 
             return View(
                 new ForumTopicModel

@@ -28,6 +28,7 @@ namespace GammaForums
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IForum, ForumService>();
+            services.AddScoped<IPost, PostService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

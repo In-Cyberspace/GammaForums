@@ -8623,7 +8623,7 @@
       "outputPath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/GammaForums.Service/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/hibikeportal/.nuget/NuGet/NuGet.Config"
+        "/Users/hibikeportal/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
