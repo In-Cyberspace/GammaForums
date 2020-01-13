@@ -10,10 +10,12 @@ namespace GammaForums.Controllers
     public class PostController : Controller
     {
         private readonly IPost _postService;
+
         public PostController(IPost postService)
         {
             _postService = postService;
         }
+
         private IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
         {
             return replies
@@ -30,6 +32,7 @@ namespace GammaForums.Controllers
                 }
             );
         }
+
         public IActionResult Index(int postId)
         {
             Post post = _postService.GetById(postId);
@@ -47,13 +50,6 @@ namespace GammaForums.Controllers
                     Replies = BuildPostReplies(post.Replies)
                 }
             );
-        }
-
-        public IActionResult Welcome()
-        {
-            ViewData["Message"] = "Your welcome message";
-
-            return View();
         }
     }
 }

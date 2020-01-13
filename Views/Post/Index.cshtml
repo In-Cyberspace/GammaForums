@@ -1,0 +1,30 @@
+@model GammaForums.Models.Post.PostIndexModel
+
+<h1>
+    @Model.Title
+</h1>
+
+<div>
+    Author: @Model.AuthorName
+    Created: @Model.TimeCreated
+</div>
+
+<div>
+    @Model.PostContent
+</div>
+
+@if(Model.Replies.Any())
+{
+    @foreach (var reply in Model.Replies)
+    {
+        <div>
+            <div>
+                Reply Author: @reply.ReplyContent
+                Reply Created: @reply.TimeCreated
+            </div>
+            <div>
+                @reply.ReplyContent
+            </div>
+        </div>
+    }
+}

@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/GammaForums.csproj",
+  "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/GammaForums.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -20501,58 +20501,63 @@
   "RootNamespace": "GammaForums",
   "Documents": [
     {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views/Shared/_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Areas/Identity/Pages/_ViewStart.cshtml",
-      "TargetPath": "Areas/Identity/Pages/_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/_ViewStart.cshtml",
-      "TargetPath": "Views/_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Shared/_Layout.cshtml",
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views/Shared/_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Shared/Error.cshtml",
-      "TargetPath": "Views/Shared/Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Home/Index.cshtml",
-      "TargetPath": "Views/Home/Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Forum/Index.cshtml",
-      "TargetPath": "Views/Forum/Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Forum/Topic.cshtml",
-      "TargetPath": "Views/Forum/Topic.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views/Home/Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/_ViewImports.cshtml",
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/_ViewImports.cshtml",
       "TargetPath": "Views/_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/hibikeportal/Projects/dotNET/Visual_Studio_projects/GammaForums/Views/Shared/_LoginPartial.cshtml",
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Forum/Index.cshtml",
+      "TargetPath": "Views/Forum/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Home/Privacy.cshtml",
+      "TargetPath": "Views/Home/Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views/Shared/_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/_ViewStart.cshtml",
+      "TargetPath": "Views/_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Areas/Identity/Pages/_ViewStart.cshtml",
+      "TargetPath": "Areas/Identity/Pages/_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Home/Index.cshtml",
+      "TargetPath": "Views/Home/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Shared/Error.cshtml",
+      "TargetPath": "Views/Shared/Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Shared/_LoginPartial.cshtml",
       "TargetPath": "Views/Shared/_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Post/Index.cshtml",
+      "TargetPath": "Views/Post/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hibikeportal/Projects/Web_Applications/dotNET_Core/GammaForums/Views/Forum/Topic.cshtml",
+      "TargetPath": "Views/Forum/Topic.cshtml",
       "FileKind": "mvc"
     }
   ],
