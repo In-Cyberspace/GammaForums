@@ -23,7 +23,7 @@ namespace GammaForums.Controllers
                 reply => new PostReplyModel
                 {
                     Id = reply.Id,
-                    AuthorID = reply.User.Id,
+                    AuthorId = reply.User.Id,
                     AuthorName = reply.User.UserName,
                     AuthorImageUrl = reply.User.ProfileImageUrl,
                     AuthorRating = reply.User.Rating,
@@ -41,7 +41,7 @@ namespace GammaForums.Controllers
                 new PostIndexModel
                 {
                     Id = post.Id,
-                    AuthorID = post.User.Id,
+                    AuthorId = post.User.Id,
                     AuthorName = post.User.UserName,
                     AuthorImageUrl = post.User.ProfileImageUrl,
                     AuthorRating = post.User.Rating,

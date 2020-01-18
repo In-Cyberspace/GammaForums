@@ -4,8 +4,6 @@ using GammaForums.Models.Forum;
 using GammaForums.Models.Post;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace GammaForums.Controllers
 {
     public class ForumController : Controller
@@ -53,26 +51,29 @@ namespace GammaForums.Controllers
 
         public IActionResult Topic(int id)
         {
-            Forum forum = _forumService.GetById(id);
+            var forum = _forumService.GetById(id);
 
             return View(
                 new ForumTopicModel
                 {
+                    Forum = BuildForumListing(forum),
+
                     Posts =
+                    forum.Posts.Any()
+                    ? null :
                     forum
                     .Posts
                     .Select(post => new PostListingModel
                     {
                         Id = post.Id,
                         AuthorId = post.User.Id,
+                        AuthorName = post.User.UserName,
                         AuthorRating = post.User.Rating,
                         Title = post.Title,
                         DatePosted = post.TimeCreated.ToString(),
                         RepliesCount = post.Replies.Count(),
                         Forum = BuildForumListing(post)
-                    }),
-
-                    Forum = BuildForumListing(forum)
+                    })
                 });
         }
     }
