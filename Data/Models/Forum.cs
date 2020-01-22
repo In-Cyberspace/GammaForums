@@ -35,7 +35,7 @@ namespace Data
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// A collection of the posts mad on the forum
+        /// A collection of the posts made on the forum
         /// </summary>
         public virtual IEnumerable<Post> Posts { get; set; }
     }

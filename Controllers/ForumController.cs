@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Data;
 using GammaForums.Models.Forum;
 using GammaForums.Models.Post;
@@ -51,30 +52,28 @@ namespace GammaForums.Controllers
 
         public IActionResult Topic(int id)
         {
-            var forum = _forumService.GetById(id);
+            Forum forum = _forumService.GetById(id);
 
             return View(
-                new ForumTopicModel
-                {
-                    Forum = BuildForumListing(forum),
-
-                    Posts =
-                    forum.Posts.Any()
-                    ? null :
-                    forum
-                    .Posts
-                    .Select(post => new PostListingModel
+                    new ForumTopicModel
                     {
-                        Id = post.Id,
-                        AuthorId = post.User.Id,
-                        AuthorName = post.User.UserName,
-                        AuthorRating = post.User.Rating,
-                        Title = post.Title,
-                        DatePosted = post.TimeCreated.ToString(),
-                        RepliesCount = post.Replies.Count(),
-                        Forum = BuildForumListing(post)
-                    })
-                });
+                        Forum = BuildForumListing(forum),
+
+                        Posts =
+                        forum
+                        .Posts
+                        .Select(post => new PostListingModel
+                        {
+                            Id = post.Id,
+                            AuthorId = post.User.Id,
+                            AuthorName = post.User.UserName,
+                            AuthorRating = post.User.Rating,
+                            Title = post.Title,
+                            DatePosted = post.TimeCreated.ToString(),
+                            RepliesCount = post.Replies.Count(),
+                            Forum = BuildForumListing(post)
+                        })
+                    });
         }
     }
 }
