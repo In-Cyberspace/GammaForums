@@ -9,6 +9,7 @@ namespace Data
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
         IEnumerable<Post> GetPostsByForum(int forumID);
+        IEnumerable<Post> GetLatestPosts(int nPost);
 
         Task Add(Post post);
         Task Delete(int postId);

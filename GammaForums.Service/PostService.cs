@@ -15,6 +15,7 @@ namespace GammaForums.Service
         {
             _context = context;
         }
+
         public async Task Add(Post post)
         {
             _context.Add(post);
@@ -56,6 +57,13 @@ namespace GammaForums.Service
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetLatestPosts(int nPost)
+        {
+            return GetAll()
+            .OrderByDescending(post => post.TimeCreated)
+            .Take(nPost);
         }
 
         public IEnumerable<Post> GetPostsByForum(int forumID)
