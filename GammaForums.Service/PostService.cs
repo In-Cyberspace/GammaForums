@@ -39,13 +39,16 @@ namespace GammaForums.Service
 
         public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Posts
+             .Include(post => post.User)
+             .Include(post => post.Replies)
+             .ThenInclude(reply => reply.User)
+             .Include(post => post.Forum);
         }
 
         public Post GetById(int postId)
         {
-            return _context
-                .Posts
+            return _context.Posts
                 .Where(post => post.Id == postId)
                 .Include(post => post.User)
                 .Include(post => post.Replies)

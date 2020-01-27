@@ -12,10 +12,12 @@ namespace GammaForums.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly IPost _postService;
 
-        public HomeController(IPost postService)
+        public HomeController(ILogger<HomeController> logger, IPost postService)
         {
+            _logger = logger;
             _postService = postService;
         }
 
@@ -53,13 +55,6 @@ namespace GammaForums.Controllers
 
                 SearchQuery = ""
             };
-        }
-
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
         }
 
         public IActionResult Index()
