@@ -53,11 +53,9 @@ namespace GammaForums.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
-            ApplicationUser user = _userManager
-            .FindByIdAsync(
+            ApplicationUser user = _userManager.FindByIdAsync(
                 _userManager.GetUserId(User)
-            )
-            .Result;
+            ).Result;
 
             Post post = BuildPost(model, user);
 
@@ -71,18 +69,18 @@ namespace GammaForums.Controllers
         private IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
         {
             return replies
-            .Select(
-                reply => new PostReplyModel
-                {
-                    Id = reply.Id,
-                    AuthorId = reply.User.Id,
-                    AuthorName = reply.User.UserName,
-                    AuthorImageUrl = reply.User.ProfileImageUrl,
-                    AuthorRating = reply.User.Rating,
-                    TimeCreated = reply.TimeCreated,
-                    ReplyContent = reply.Content
-                }
-            );
+                .Select(
+                    reply => new PostReplyModel
+                    {
+                        Id = reply.Id,
+                        AuthorId = reply.User.Id,
+                        AuthorName = reply.User.UserName,
+                        AuthorImageUrl = reply.User.ProfileImageUrl,
+                        AuthorRating = reply.User.Rating,
+                        TimeCreated = reply.TimeCreated,
+                        ReplyContent = reply.Content
+                    }
+                );
         }
 
         public IActionResult Index(int postId)
@@ -98,8 +96,11 @@ namespace GammaForums.Controllers
                     AuthorImageUrl = post.User.ProfileImageUrl,
                     AuthorRating = post.User.Rating,
                     TimeCreated = post.TimeCreated,
+                    Title = post.Title,
                     PostContent = post.Content,
-                    Replies = BuildPostReplies(post.Replies)
+                    Replies = BuildPostReplies(post.Replies),
+                    ForumId = post.Forum.Id,
+                    ForumName = post.Forum.Title
                 }
             );
         }
