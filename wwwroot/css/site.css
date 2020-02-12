@@ -11,13 +11,11 @@
   box-shadow: 0 5px 4px -6px #000;
   background-color: gray !important;
 }
+
 .navLogo {
   background-image: url("/images/theme/app-logo-s.png");
   background-size: 100%;
-  background-repeat: no-repeat;
-  padding-right: 16px;
-  margin-right: 12px;
-  width: 150px;
+  width: 40px;
   height: 40px;
   display: inline-block;
 }
@@ -55,9 +53,12 @@
 /* Front page heading */
 .frontPageSplash {
   text-align: center;
-  background-color: #dfff80;
+  /* background-color: #dfff80; */
+  /* background-color: #555; */
+  background-image: url("/images/theme/frontsplash5.jpg");
   background-repeat: no-repeat;
-  height: auto;
+  background-size: 100%;
+  /* height: auto; */
   padding: 20px;
 }
 
@@ -66,6 +67,8 @@
   opacity: 1;
   font-family: "Roboto";
   color: dimgray;
+  /* padding: 12px 0 0 32px; */
+  /* height: 360px; */
 }
 
 .frontPageHeading {
