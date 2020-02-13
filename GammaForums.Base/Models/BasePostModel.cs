@@ -10,5 +10,6 @@ namespace GammaForums.GammaForums.Base.Models
         public int AuthorRating { get; set; }
         public string AuthorImageUrl { get; set; }
         public DateTime TimeCreated { get; set; }
+        public bool IsAuthorAdmin { get; set; }
     }
 }
