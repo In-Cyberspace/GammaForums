@@ -66,6 +66,11 @@ namespace GammaForums.Controllers
             return RedirectToAction("Index", "Post", new { postId = post.Id });
         }
 
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
+        }
+
         private IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
         {
             return replies
@@ -78,7 +83,8 @@ namespace GammaForums.Controllers
                         AuthorImageUrl = reply.User.ProfileImageUrl,
                         AuthorRating = reply.User.Rating,
                         TimeCreated = reply.TimeCreated,
-                        ReplyContent = reply.Content
+                        ReplyContent = reply.Content,
+                        IsAuthorAdmin = IsAuthorAdmin(reply.User)
                     }
                 );
         }
@@ -100,7 +106,8 @@ namespace GammaForums.Controllers
                     PostContent = post.Content,
                     Replies = BuildPostReplies(post.Replies),
                     ForumId = post.Forum.Id,
-                    ForumName = post.Forum.Title
+                    ForumName = post.Forum.Title,
+                    IsAuthorAdmin = IsAuthorAdmin(post.User)
                 }
             );
         }

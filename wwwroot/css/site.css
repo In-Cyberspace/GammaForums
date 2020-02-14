@@ -55,7 +55,7 @@
   text-align: center;
   /* background-color: #dfff80; */
   /* background-color: #555; */
-  background-image: url("/images/theme/frontsplash6.jpg");
+  background-image: url("/images/theme/frontsplash6.png");
   background-repeat: no-repeat;
   background-size: 100%;
   /* height: auto; */
@@ -126,6 +126,114 @@
   height: 40px;
   width: 40px;
   background-color: #ddd;
+}
+
+.postAuthorImage {
+  height: 80px;
+  width: 80px;
+  background-size: 100%;
+}
+
+.postAuthorContainer {
+  padding: 12px;
+  color: #444;
+  font-family: "Roboto";
+  width: 190px;
+}
+
+.postIndexTitle {
+  font-size: 1.4em;
+}
+
+.postContentContainer {
+  font-family: "Roboto";
+  color: #222;
+  padding: 22px;
+  border-left: 1px solid #ddd;
+}
+
+.postAuthorRating {
+  font-size: 0.9em;
+  color: #159;
+  font-family: "Roboto Mono";
+}
+
+#postIndexContent {
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.postHeader {
+  background-color: #212121;
+  padding: 8px 0px 24px 24px;
+}
+
+#headingBtn {
+  float: right;
+  margin-right: 20px;
+}
+
+/* Custom Buttons */
+.btn-back {
+  background-color: #555;
+  color: #fff;
+  transition: ease-in 0.1s;
+  border-radius: 0px !important;
+}
+
+.btn-back:hover {
+  transition: ease-in 0.1s;
+  background-color: #1e881e !important;
+}
+
+.btn-newReply {
+  background-color: #5c6bc0 !important;
+  color: #fff !important;
+  transition: ease-in 0.1s;
+  border-radius: 0px !important;
+}
+
+.btn-newReply:hover {
+  background-color: #9fa8da !important;
+  transition: ease-in 0.1s;
+}
+
+.btn-file {
+  background-color: #4fc3f7;
+  color: white;
+  width: 100%;
+  transition: ease 0.3s;
+}
+
+.btn-file:hover {
+  background-color: #039be5;
+  transition: ease 0.3s;
+}
+
+btn-newPost {
+  background-color: #c62828 !important;
+  color: #fff !important;
+  transition: ease-in 0.1s;
+  border-radius: 0px !important;
+}
+
+btn-newPost:hover {
+  background-color: #e53935 !important;
+  transition: ease-in 0.1s;
+  color: #fff !important;
+}
+
+btn-submitPost {
+  background-color: #00695c !important;
+  color: #fff !important;
+  transition: ease-in 0.1s;
+  border-radius: 0px !important;
+}
+
+btn-submitPost:hover {
+  background-color: #00897b !important;
+  transition: ease-in 0.1s;
+  color: #fff !important;
 }
 
 /* Forum index */
