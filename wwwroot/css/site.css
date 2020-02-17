@@ -300,6 +300,17 @@ btn-submitPost:hover {
   font-family: "Roboto Mono";
 }
 
+/* Forum topic */
+.descBorder {
+  border-top: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.descBody {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
 /*Post*/
 .createPostSection {
   background-color: #fff;
