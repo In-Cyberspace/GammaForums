@@ -236,6 +236,13 @@ btn-submitPost:hover {
   color: #fff !important;
 }
 
+.btb-forumSearch {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit;
+}
+
 /* Forum index */
 #forumIndexTable td {
   background-color: rgba(255, 255, 255, 0.9);
@@ -301,6 +308,20 @@ btn-submitPost:hover {
 }
 
 /* Forum topic */
+.searchBar {
+  padding: 3px 5px 2px 12px;
+  margin: 8px;
+  background-color: #333;
+  width: 10%;
+  transition: ease 0.3s;
+  border: none;
+}
+
+.searchBar:focus {
+  color: black;
+  width: 60%;
+}
+
 .descBorder {
   border-top: 1px solid rgb(0, 0, 0);
   border-bottom: 1px solid rgb(0, 0, 0);

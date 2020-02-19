@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Data;
 using GammaForums.Models.Forum;
 using GammaForums.Models.Post;
@@ -10,6 +9,7 @@ namespace GammaForums.Controllers
     public class ForumController : Controller
     {
         private readonly IForum _forumService;
+        private readonly IPost _postService;
 
         private ForumListingModel BuildForumListing(Forum forum)
         {
@@ -27,9 +27,11 @@ namespace GammaForums.Controllers
             return BuildForumListing(post.Forum);
         }
 
-        public ForumController(IForum forumService)
+        public ForumController(IForum forumService, IPost postService)
         {
             _forumService = forumService;
+            _postService = postService;
+
         }
 
         // GET: /<controller>/
@@ -50,9 +52,9 @@ namespace GammaForums.Controllers
                 });
         }
 
-        public IActionResult Topic(int id)
+        public IActionResult Topic(int Id, string searchQuery)
         {
-            Forum forum = _forumService.GetById(id);
+            Forum forum = _forumService.GetById(Id);
 
             return View(
                     new ForumTopicModel
@@ -60,8 +62,8 @@ namespace GammaForums.Controllers
                         Forum = BuildForumListing(forum),
 
                         Posts =
-                        forum
-                        .Posts
+                        _postService.GetFilteredPosts(forum, searchQuery)
+                        .ToList()
                         .Select(post => new PostListingModel
                         {
                             Id = post.Id,
@@ -74,6 +76,12 @@ namespace GammaForums.Controllers
                             Forum = BuildForumListing(post)
                         })
                     });
+        }
+
+        [HttpPost]
+        public IActionResult Search(int Id, string searchQuery)
+        {
+            return RedirectToAction("Topic", new { Id, searchQuery });
         }
     }
 }
