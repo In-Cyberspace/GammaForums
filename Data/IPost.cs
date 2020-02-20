@@ -16,9 +16,14 @@ namespace Data
         IEnumerable<Post> GetAll();
 
         /// <summary>
-        /// Collection of filtered posts
+        /// Collection of filtered posts using the forum and a search query
         /// </summary>
         IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery);
+
+        /// <summary>
+        /// Collection of filtered posts
+        /// </summary>
+        IEnumerable<Post> GetFilteredPosts(string searchQuery);
 
         /// <summary>
         /// Collection of posts via the forum's unique identifier

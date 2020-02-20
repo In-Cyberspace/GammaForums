@@ -67,6 +67,13 @@ namespace GammaForums.Service
                 || post.Content.Contains(searchQuery));
         }
 
+        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
+        {
+            return GetAll().Where(post
+                => post.Title.Contains(searchQuery)
+                || post.Content.Contains(searchQuery));
+        }
+
         public IEnumerable<Post> GetLatestPosts(int nPost)
         {
             return GetAll()
