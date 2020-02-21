@@ -10,7 +10,7 @@
                 Gamma Forums is the world's fastest growing coding forum
             </p>
             <div>
-                <form asp-controller="Search" method="post">
+                <form asp-controller="Search" asp-action="Search" method="post">
                     <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Search..."/>
                 </form>
             </div>

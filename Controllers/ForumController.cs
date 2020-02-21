@@ -37,45 +37,42 @@ namespace GammaForums.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View(
-                new ForumIndexModel
+            return View(new ForumIndexModel
+            {
+                ForumList = _forumService
+                .GetAll()
+                .Select(forum => new ForumListingModel
                 {
-                    ForumList =
-                    _forumService
-                    .GetAll()
-                    .Select(forum => new ForumListingModel
-                    {
-                        Id = forum.Id,
-                        Title = forum.Title,
-                        Description = forum.Description
-                    })
-                });
+                    Id = forum.Id,
+                    Title = forum.Title,
+                    Description = forum.Description
+                })
+            });
         }
 
         public IActionResult Topic(int Id, string searchQuery)
         {
             Forum forum = _forumService.GetById(Id);
 
-            return View(
-                    new ForumTopicModel
-                    {
-                        Forum = BuildForumListing(forum),
+            return View(new ForumTopicModel
+            {
+                Forum = BuildForumListing(forum),
 
-                        Posts =
-                        _postService.GetFilteredPosts(forum, searchQuery)
-                        .ToList()
-                        .Select(post => new PostListingModel
-                        {
-                            Id = post.Id,
-                            AuthorId = post.User.Id,
-                            AuthorName = post.User.UserName,
-                            AuthorRating = post.User.Rating,
-                            Title = post.Title,
-                            DatePosted = post.TimeCreated.ToString(),
-                            RepliesCount = post.Replies.Count(),
-                            Forum = BuildForumListing(post)
-                        })
-                    });
+                Posts = _postService
+                .GetFilteredPosts(forum, searchQuery)
+                .ToList()
+                .Select(post => new PostListingModel
+                {
+                    Id = post.Id,
+                    AuthorId = post.User.Id,
+                    AuthorName = post.User.UserName,
+                    AuthorRating = post.User.Rating,
+                    Title = post.Title,
+                    DatePosted = post.TimeCreated.ToString(),
+                    RepliesCount = post.Replies.Count(),
+                    Forum = BuildForumListing(post)
+                })
+            });
         }
 
         [HttpPost]

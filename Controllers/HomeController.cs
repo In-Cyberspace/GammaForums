@@ -39,19 +39,17 @@ namespace GammaForums.Controllers
             {
                 LatestPosts = _postService
                 .GetLatestPosts(10)
-                .Select(
-                    post => new PostListingModel
-                    {
-                        Id = post.Id,
-                        Title = post.Title,
-                        AuthorId = post.User.Id,
-                        AuthorName = post.User.UserName,
-                        AuthorRating = post.User.Rating,
-                        DatePosted = post.TimeCreated.ToString(),
-                        RepliesCount = post.Replies.Count(),
-                        Forum = GetForumListingForPost(post)
-                    }
-                ),
+                .Select(post => new PostListingModel
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    AuthorId = post.User.Id,
+                    AuthorName = post.User.UserName,
+                    AuthorRating = post.User.Rating,
+                    DatePosted = post.TimeCreated.ToString(),
+                    RepliesCount = post.Replies.Count(),
+                    Forum = GetForumListingForPost(post)
+                }),
 
                 SearchQuery = ""
             };

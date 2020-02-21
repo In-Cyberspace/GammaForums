@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using GammaForums.Models.Forum;
 using GammaForums.Models.Post;
@@ -31,27 +32,28 @@ namespace GammaForums.Controllers
 
         public IActionResult Results(string searchQuery)
         {
+            IEnumerable<Post> posts = _postService.GetFilteredPosts(searchQuery);
+
             return View(new SearchResultModel
             {
-                Posts = _postService.GetFilteredPosts(searchQuery)
-                .Select(post
-                    => new PostListingModel
-                    {
-                        Id = post.Id,
-                        AuthorId = post.User.Id,
-                        AuthorName = post.User.UserName,
-                        AuthorRating = post.User.Rating,
-                        Title = post.Title,
-                        DatePosted = post.TimeCreated.ToString(),
-                        RepliesCount = post.Replies.Count(),
-                        Forum = BuildForumListing(post)
-                    }
-                )
+                Posts = posts.Select(post => new PostListingModel
+                {
+                    Id = post.Id,
+                    AuthorId = post.User.Id,
+                    AuthorName = post.User.UserName,
+                    AuthorRating = post.User.Rating,
+                    Title = post.Title,
+                    DatePosted = post.TimeCreated.ToString(),
+                    RepliesCount = post.Replies.Count(),
+                    Forum = BuildForumListing(post)
+                }),
+                SearchQuery = searchQuery,
+                EmptySearchResults = (!string.IsNullOrEmpty(searchQuery) && !posts.Any())
             });
         }
 
         [HttpPost]
-        public IActionResult Search(int ID, string searchQuery)
+        public IActionResult Search(string searchQuery)
         {
             return RedirectToAction("Results", new { searchQuery });
         }
