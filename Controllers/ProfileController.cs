@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using Data;
-using GammaForum.Models.ApplicationUser;
+using GammaForums.Models.ApplicationUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,10 +24,19 @@ namespace GammaForums.Controllers
 
         public IActionResult Detail(string Id)
         {
+            ApplicationUser user = _userService.GetById(Id);
+            IList<string> userRoles = _userManager.GetRolesAsync(user).Result;
+
             return View(
                 new ProfileModel
                 {
-
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    UserRating = user.Rating.ToString(),
+                    Email = user.Email,
+                    ProfileImageUrl = user.ProfileImageUrl,
+                    MemberSince = user.MemberSince,
+                    IsAdmin = userRoles.Contains("Admin")
                 }
             );
         }
