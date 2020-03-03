@@ -26,7 +26,7 @@ namespace Data
             ApplicationUser user = new ApplicationUser
             {
                 UserName = "ForumAdmin",
-                NormalizedUserName = "forumadmin",
+                NormalizedUserName = "FORUMADMIN",
                 Email = "admin@example.com",
                 NormalizedEmail = "admin@example.com",
                 EmailConfirmed = true,
