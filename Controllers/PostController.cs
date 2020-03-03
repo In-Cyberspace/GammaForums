@@ -63,7 +63,7 @@ namespace GammaForums.Controllers
 
             // TODO: Implement User Rating Management
 
-            return RedirectToAction("Index", "Post", new { postId = post.Id });
+            return RedirectToAction("Index", "Post", new { Id = post.Id });
         }
 
         private bool IsAuthorAdmin(ApplicationUser user)

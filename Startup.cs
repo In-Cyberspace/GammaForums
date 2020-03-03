@@ -24,8 +24,10 @@ namespace GammaForums
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IApplicationUser, ApplicationUserService>();
             services.AddScoped<IForum, ForumService>();
             services.AddScoped<IPost, PostService>();
+            services.AddScoped<IUpload, UploadService>();
             services.AddTransient<DataSeeder>();
             services.AddControllersWithViews();
             services.AddRazorPages();
