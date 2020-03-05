@@ -1,24 +1,30 @@
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Data;
 using GammaForums.Models.ApplicationUser;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace GammaForums.Controllers
 {
     public class ProfileController : Controller
     {
+        private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IApplicationUser _userService;
         private readonly IUpload _uploadService;
 
         public ProfileController(
+            IConfiguration configuration,
             UserManager<ApplicationUser> userManager,
             IApplicationUser userService,
             IUpload uploadService)
         {
+            _configuration = configuration;
             _userManager = userManager;
             _userService = userService;
             _uploadService = uploadService;
@@ -46,23 +52,35 @@ namespace GammaForums.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadProfileImage(IFormFile file)
         {
-            if (file is null)
-            {
-                throw new System.ArgumentNullException(nameof(file));
-            }
-
             string userId = _userManager.GetUserId(User);
+
             // Connect to an Azure Storage Account Container.
+            string connectionString =
+            _configuration.GetConnectionString("AzureStorageAccount");
+
             // Get Blob Container.
+            CloudBlobContainer container =
+            _uploadService.GetBlobContainer(connectionString);
 
             // Parse the content disposition header on the http request.
-            // Grab the file name
+            ContentDispositionHeaderValue contentDisposition =
+            ContentDispositionHeaderValue.Parse(file.ContentDisposition);
 
-            // Get a reference to a Block Blob (a particular type of blob that is going to be uploaded to our blob container, which we have an API for so it’s not difficult)
+            // Grab the file namestring
+            string filename = contentDisposition.FileName.Trim('"');
+
+            // Get a reference to a Block Blob
+            CloudBlockBlob blockBlob =
+            container.GetBlockBlobReference(filename);
+
             // On that block blob, upload our file, using the file name <— file uploaded to cloud
+            await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
 
             // Set the user’s profile image to the URI
+            await _userService.SetProfileImage(userId, blockBlob.Uri);
+
             // Redirect to user’s profile page
+            return RedirectToAction("Detail", "Profile", new { Id = userId });
         }
     }
 }

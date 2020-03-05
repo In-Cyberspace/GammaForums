@@ -338,6 +338,14 @@ btn-submitPost:hover {
   background-color: #fff;
 }
 
+#userProfileImage {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background-color: #ddd;
+  background-size: 100%;
+}
+
 #userEmailLabel,
 #userBioLabel,
 #userCreatedLabel,

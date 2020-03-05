@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace GammaForums
@@ -14,7 +15,16 @@ namespace GammaForums
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                    .ConfigureAppConfiguration((builderContext, config) =>
+                    {
+                        IHostEnvironment env = builderContext.HostingEnvironment;
+                        config.AddJsonFile(
+                            "storageSettings.json",
+                            optional: false,
+                            reloadOnChange: true);
+                    })
+                    .UseStartup<Startup>();
                 });
     }
 }

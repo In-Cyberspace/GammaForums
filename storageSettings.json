@@ -1,0 +1,5 @@
+{
+    "ConnectionStrings": {
+       "AzureStorageAccount": "DefaultEndpointsProtocol=https;AccountName=gammaforums;AccountKey=fYhpF3TjLAI8h7fqWVC776Z+vI3AHjhZT33B29L/g2DYuc3BoYX+B66qEO1AXd5mn27N3Cu6RjIO/bMFt1apAw==;EndpointSuffix=core.windows.net" 
+    }
+}
