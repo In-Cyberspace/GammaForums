@@ -11,13 +11,17 @@ namespace GammaForums.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IPost _postService;
+        private readonly IApplicationUser _userService;
 
         public ReplyController(
                 UserManager<ApplicationUser> userManager,
-                IPost postService)
+                IPost postService,
+                IApplicationUser userService)
+
         {
             _userManager = userManager;
             _postService = postService;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Create(int Id)
@@ -71,6 +75,7 @@ namespace GammaForums.Controllers
             PostReply reply = BuildReply(model, user);
 
             await _postService.AddReply(reply);
+            await _userService.UpdateUserRating(userId, typeof(PostReply));
 
             return RedirectToAction("Index", "Post", new { Id = model.PostId });
         }

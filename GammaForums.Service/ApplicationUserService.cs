@@ -25,9 +25,11 @@ namespace GammaForums.Service
             return GetAll().FirstOrDefault(user => user.Id == Id);
         }
 
-        public Task IncrementRating(string Id, Type type)
+        public async Task UpdateUserRating(string userId, Type type)
         {
-            throw new NotImplementedException();
+            ApplicationUser user = GetById(userId);
+            user.Rating = CalculateUserRating(type, user.Rating);
+            await _context.SaveChangesAsync();
         }
 
         public async Task SetProfileImage(string Id, Uri uri)
@@ -36,6 +38,23 @@ namespace GammaForums.Service
             user.ProfileImageUrl = uri.AbsoluteUri;
             _context.Update(user);
             await _context.SaveChangesAsync();
+        }
+
+        private int CalculateUserRating(Type type, int userRating)
+        {
+            int inc = 0;
+
+            if (type == typeof(Post))
+            {
+                inc = 1;
+            }
+
+            if (type == typeof(PostReply))
+            {
+                inc = 3;
+            }
+
+            return userRating + inc;
         }
     }
 }

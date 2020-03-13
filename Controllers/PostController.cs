@@ -15,12 +15,18 @@ namespace GammaForums.Controllers
         private readonly IForum _forumService;
         private readonly IPost _postService;
         private static UserManager<ApplicationUser> _userManager;
+        private readonly IApplicationUser _userService;
 
-        public PostController(IForum forumService, IPost postService, UserManager<ApplicationUser> userManager)
+        public PostController(
+            IForum forumService,
+            IPost postService,
+            UserManager<ApplicationUser> userManager,
+            IApplicationUser userService)
         {
             _forumService = forumService;
             _postService = postService;
             _userManager = userManager;
+            _userService = userService;
         }
 
         private Post BuildPost(NewPostModel model, ApplicationUser user)
@@ -53,15 +59,14 @@ namespace GammaForums.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
-            ApplicationUser user = _userManager.FindByIdAsync(
-                _userManager.GetUserId(User)
-            ).Result;
+            string userId = _userManager.GetUserId(User);
+
+            ApplicationUser user = _userManager.FindByIdAsync(userId).Result;
 
             Post post = BuildPost(model, user);
 
             await _postService.Add(post);
-
-            // TODO: Implement User Rating Management
+            await _userService.UpdateUserRating(userId, typeof(Post));
 
             return RedirectToAction("Index", "Post", new { Id = post.Id });
         }
@@ -71,7 +76,8 @@ namespace GammaForums.Controllers
             return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
-        private IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
+        private IEnumerable<PostReplyModel> BuildPostReplies(
+            IEnumerable<PostReply> replies)
         {
             return replies
                 .Select(

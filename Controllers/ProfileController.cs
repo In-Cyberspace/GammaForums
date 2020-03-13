@@ -66,20 +66,20 @@ namespace GammaForums.Controllers
             ContentDispositionHeaderValue contentDisposition =
             ContentDispositionHeaderValue.Parse(file.ContentDisposition);
 
-            // Grab the file namestring
+            // Grab the file namestring.
             string filename = contentDisposition.FileName.Trim('"');
 
-            // Get a reference to a Block Blob
+            // Get a reference to a Block Blob.
             CloudBlockBlob blockBlob =
             container.GetBlockBlobReference(filename);
 
-            // On that block blob, upload our file, using the file name <— file uploaded to cloud
+            // On that block blob, upload our file, using the file name <— file uploaded to cloud.
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
 
-            // Set the user’s profile image to the URI
+            // Set the user’s profile image to the URI.
             await _userService.SetProfileImage(userId, blockBlob.Uri);
 
-            // Redirect to user’s profile page
+            // Redirect to user’s profile page.
             return RedirectToAction("Detail", "Profile", new { Id = userId });
         }
     }
