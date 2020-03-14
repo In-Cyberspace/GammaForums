@@ -1,36 +1,34 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Data;
 using GammaForums.Models.Forum;
 using GammaForums.Models.Post;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace GammaForums.Controllers
 {
     public class ForumController : Controller
     {
+        private readonly IConfiguration _configuration;
         private readonly IForum _forumService;
         private readonly IPost _postService;
+        private readonly IUpload _uploadService;
 
-        private ForumListingModel BuildForumListing(Forum forum)
+        public ForumController(
+            IConfiguration configuration,
+            IForum forumService,
+            IPost postService,
+            IUpload uploadService)
         {
-            return new ForumListingModel
-            {
-                Id = forum.Id,
-                Title = forum.Title,
-                Description = forum.Description,
-                ImageUrl = forum.ImageUrl
-            };
-        }
-
-        private ForumListingModel BuildForumListing(Post post)
-        {
-            return BuildForumListing(post.Forum);
-        }
-
-        public ForumController(IForum forumService, IPost postService)
-        {
+            _configuration = configuration;
             _forumService = forumService;
             _postService = postService;
+            _uploadService = uploadService;
 
         }
 
@@ -79,6 +77,73 @@ namespace GammaForums.Controllers
         public IActionResult Search(int Id, string searchQuery)
         {
             return RedirectToAction("Topic", new { Id, searchQuery });
+        }
+
+        public IActionResult Create()
+        {
+            AddForumModel model = new AddForumModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddForum(AddForumModel model)
+        {
+            string imageUri = "/images/forum/default.png";
+
+            if (model.ImageUpload != null)
+            {
+                CloudBlockBlob blockBlob = UploadForumImage(model.ImageUpload);
+                imageUri = blockBlob.Uri.AbsoluteUri;
+            }
+
+            Forum forum = new Forum
+            {
+                Title = model.Title,
+                Description = model.Description,
+                TimeCreated = DateTime.Now,
+                ImageUrl = model.ImageUrl
+            };
+
+            await _forumService.Create(forum);
+
+            return RedirectToAction("Index", "Forum");
+        }
+
+        private CloudBlockBlob UploadForumImage(IFormFile file)
+        {
+            string connectionString =
+            _configuration.GetConnectionString("AzureStorageAccount");
+
+            CloudBlobContainer container =
+            _uploadService.GetBlobContainer(connectionString);
+
+            ContentDispositionHeaderValue contentDisposition =
+            ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+
+            string filename = contentDisposition.FileName.Trim('"');
+
+            CloudBlockBlob blockBlob =
+            container.GetBlockBlobReference(filename);
+
+            blockBlob.UploadFromStreamAsync(file.OpenReadStream());
+
+            return blockBlob;
+        }
+
+        private ForumListingModel BuildForumListing(Forum forum)
+        {
+            return new ForumListingModel
+            {
+                Id = forum.Id,
+                Title = forum.Title,
+                Description = forum.Description,
+                ImageUrl = forum.ImageUrl
+            };
+        }
+
+        private ForumListingModel BuildForumListing(Post post)
+        {
+            return BuildForumListing(post.Forum);
         }
     }
 }
