@@ -10,10 +10,10 @@ namespace GammaForums.Service
         {
         }
 
-        public CloudBlobContainer GetBlobContainer(string connectionString)
+        public CloudBlobContainer GetBlobContainer(string connectionString, string connectionName)
         {
             return CloudStorageAccount.Parse(connectionString)
-            .CreateCloudBlobClient().GetContainerReference("profile-images");
+            .CreateCloudBlobClient().GetContainerReference(connectionName);
         }
     }
 }

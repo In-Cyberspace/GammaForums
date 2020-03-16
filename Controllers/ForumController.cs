@@ -101,7 +101,7 @@ namespace GammaForums.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 TimeCreated = DateTime.Now,
-                ImageUrl = model.ImageUrl
+                ImageUrl = imageUri
             };
 
             await _forumService.Create(forum);
@@ -115,7 +115,7 @@ namespace GammaForums.Controllers
             _configuration.GetConnectionString("AzureStorageAccount");
 
             CloudBlobContainer container =
-            _uploadService.GetBlobContainer(connectionString);
+            _uploadService.GetBlobContainer(connectionString, "forum-images");
 
             ContentDispositionHeaderValue contentDisposition =
             ContentDispositionHeaderValue.Parse(file.ContentDisposition);

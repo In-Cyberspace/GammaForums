@@ -60,7 +60,7 @@ namespace GammaForums.Controllers
 
             // Get Blob Container.
             CloudBlobContainer container =
-            _uploadService.GetBlobContainer(connectionString);
+            _uploadService.GetBlobContainer(connectionString, "profile-images");
 
             // Parse the content disposition header on the http request.
             ContentDispositionHeaderValue contentDisposition =

@@ -52,7 +52,7 @@ namespace GammaForums
                 app.UseHsts();
             }
 
-            dataSeeder.SeedSuperUser();
+            dataSeeder.SeedSuperUser().Wait();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -15,7 +15,7 @@ namespace Data
             _context = context;
         }
 
-        public Task SeedSuperUser()
+        public async Task SeedSuperUser()
         {
             RoleStore<IdentityRole> roleStore
             = new RoleStore<IdentityRole>(_context);
@@ -34,33 +34,31 @@ namespace Data
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 
-            user.PasswordHash = new PasswordHasher<ApplicationUser>()
-            .HashPassword(user, "admin");
+            user.PasswordHash =
+            new PasswordHasher<ApplicationUser>().HashPassword(user, "admin");
 
-            bool hasAdminRole = _context.Roles
-            .Any(roles => roles.Name == "Admin");
+            bool hasAdminRole = _context.Roles.Any(roles
+            => roles.Name == "Admin");
 
             if (!hasAdminRole)
             {
-                roleStore.CreateAsync(new IdentityRole
+                await roleStore.CreateAsync(new IdentityRole
                 {
                     Name = "Admin",
                     NormalizedName = "admin"
                 });
             }
 
-            bool hasSuperUser = _context.Users
-            .Any(u => u.NormalizedUserName == user.UserName);
+            bool hasSuperUser = _context.Users.Any(u
+            => u.NormalizedUserName == user.NormalizedUserName);
 
             if (!hasSuperUser)
             {
-                userStore.CreateAsync(user);
-                userStore.AddToRoleAsync(user, "Admin");
+                await userStore.CreateAsync(user);
+                await userStore.AddToRoleAsync(user, "admin");
             }
 
-            _context.SaveChangesAsync();
-
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
     }
 }
