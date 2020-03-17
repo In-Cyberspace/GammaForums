@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Data;
@@ -81,6 +82,25 @@ namespace GammaForums.Controllers
 
             // Redirect to user’s profile page.
             return RedirectToAction("Detail", "Profile", new { Id = userId });
+        }
+
+        public IActionResult Index()
+        {
+            IEnumerable<ProfileModel> profiles = _userService.GetAll()
+            .OrderByDescending(user => user.Rating)
+            .Select(u => new ProfileModel
+            {
+                Email = u.Email,
+                UserName = u.UserName,
+                ProfileImageUrl = u.ProfileImageUrl,
+                UserRating = u.Rating.ToString(),
+                MemberSince = u.MemberSince
+            });
+
+            return View(new ProfileListModel
+            {
+                Profiles = profiles
+            });
         }
     }
 }

@@ -88,7 +88,7 @@ namespace GammaForums.Controllers
         [HttpPost]
         public async Task<IActionResult> AddForum(AddForumModel model)
         {
-            string imageUri = "/images/forum/default.png";
+            string imageUri = "/images/default/default.png";
 
             if (model.ImageUpload != null)
             {

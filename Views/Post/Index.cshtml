@@ -20,7 +20,7 @@
                 @Model.AuthorName
             </a>
             <br />
-            <span class="postData">
+            <span class="postDate">
                 @Model.TimeCreated
             </span>
             @if (Model.IsAuthorAdmin)
@@ -41,7 +41,7 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="row">
+        <div class="row" id="postReplyRow">
             <span>
                 <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply text-white-50">
                     Post Reply
@@ -67,7 +67,7 @@
                         </div>
                         <br />
                     }
-                    <span>
+                    <span class="postDate">
                         @reply.TimeCreated
                     </span>
                 </div>
