@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GammaForums.Service
 {
+    /// <summary>
+    /// A set of forum service methods.
+    /// </summary>
     public class ForumService : IForum
     {
         protected readonly ApplicationDbContext _context;
@@ -29,27 +32,44 @@ namespace GammaForums.Service
             await _context.SaveChangesAsync();
         }
 
+        public IEnumerable<ApplicationUser> GetActiveUsers(int Id)
+        {
+            IEnumerable<Post> posts = GetById(Id).Posts;
+
+            if (posts != null || !posts.Any())
+            {
+                return posts.Select(p => p.User)
+                .Union(
+                    posts.SelectMany(p => p.Replies).Select(r => r.User)
+                ).Distinct();
+            }
+
+            return new List<ApplicationUser>();
+        }
+
         public IEnumerable<Forum> GetAll()
         {
             return _context.Forums.Include(forum => forum.Posts);
         }
 
-        public IEnumerable<ApplicationUser> GetAllActiveUser()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Forum GetById(int id)
+        public Forum GetById(int Id)
         {
             return _context
             .Forums
-            .Where(f => f.Id == id)
+            .Where(f => f.Id == Id)
             .Include(f => f.Posts)
             .ThenInclude(p => p.User)
             .Include(f => f.Posts)
             .ThenInclude(p => p.Replies)
             .ThenInclude(r => r.User)
             .FirstOrDefault();
+        }
+
+        public bool HasRecentPost(int id)
+        {
+            const int hoursAgo = 12;
+            DateTime window = DateTime.Now.AddHours(-hoursAgo);
+            return GetById(id).Posts.Any(post => post.TimeCreated > window);
         }
 
         public Task UpdateForumDescription(int forumId, string newDescription)
