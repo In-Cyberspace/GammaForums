@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Data;
 using GammaForums.Models.Forum;
 using GammaForums.Models.Post;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -84,6 +85,7 @@ namespace GammaForums.Controllers
             return RedirectToAction("Topic", new { Id, searchQuery });
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             AddForumModel model = new AddForumModel();
@@ -91,6 +93,7 @@ namespace GammaForums.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddForum(AddForumModel model)
         {
             string imageUri = "/images/default/default.png";

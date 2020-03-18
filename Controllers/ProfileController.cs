@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Data;
 using GammaForums.Models.ApplicationUser;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace GammaForums.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -84,6 +86,7 @@ namespace GammaForums.Controllers
             return RedirectToAction("Detail", "Profile", new { Id = userId });
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             IEnumerable<ProfileModel> profiles = _userService.GetAll()

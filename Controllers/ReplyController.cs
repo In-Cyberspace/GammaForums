@@ -2,11 +2,13 @@ using System;
 using System.Threading.Tasks;
 using Data;
 using GammaForums.Models.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GammaForums.Controllers
 {
+    [Authorize]
     public class ReplyController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

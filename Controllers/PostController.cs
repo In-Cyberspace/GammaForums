@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Data;
 using GammaForums.Models.Post;
 using GammaForums.Models.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,18 +30,7 @@ namespace GammaForums.Controllers
             _userService = userService;
         }
 
-        private Post BuildPost(NewPostModel model, ApplicationUser user)
-        {
-            return new Post
-            {
-                Title = model.Title,
-                Content = model.Content,
-                TimeCreated = DateTime.Now,
-                User = user,
-                Forum = _forumService.GetById(model.ForumId)
-            };
-        }
-
+        [Authorize]
         public IActionResult Create(int Id)
         {
             Forum forum = _forumService.GetById(Id);
@@ -57,6 +47,7 @@ namespace GammaForums.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPost(NewPostModel model)
         {
             string userId = _userManager.GetUserId(User);
@@ -69,30 +60,6 @@ namespace GammaForums.Controllers
             await _userService.UpdateUserRating(userId, typeof(Post));
 
             return RedirectToAction("Index", "Post", new { Id = post.Id });
-        }
-
-        private bool IsAuthorAdmin(ApplicationUser user)
-        {
-            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
-        }
-
-        private IEnumerable<PostReplyModel> BuildPostReplies(
-            IEnumerable<PostReply> replies)
-        {
-            return replies
-                .Select(
-                    reply => new PostReplyModel
-                    {
-                        Id = reply.Id,
-                        AuthorId = reply.User.Id,
-                        AuthorName = reply.User.UserName,
-                        AuthorImageUrl = reply.User.ProfileImageUrl,
-                        AuthorRating = reply.User.Rating,
-                        TimeCreated = reply.TimeCreated,
-                        ReplyContent = reply.Content,
-                        IsAuthorAdmin = IsAuthorAdmin(reply.User)
-                    }
-                );
         }
 
         public IActionResult Index(int Id)
@@ -116,6 +83,43 @@ namespace GammaForums.Controllers
                     IsAuthorAdmin = IsAuthorAdmin(post.User)
                 }
             );
+        }
+
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
+        }
+
+
+        private Post BuildPost(NewPostModel model, ApplicationUser user)
+        {
+            return new Post
+            {
+                Title = model.Title,
+                Content = model.Content,
+                TimeCreated = DateTime.Now,
+                User = user,
+                Forum = _forumService.GetById(model.ForumId)
+            };
+        }
+
+        private IEnumerable<PostReplyModel> BuildPostReplies(
+            IEnumerable<PostReply> replies)
+        {
+            return replies
+                .Select(
+                    reply => new PostReplyModel
+                    {
+                        Id = reply.Id,
+                        AuthorId = reply.User.Id,
+                        AuthorName = reply.User.UserName,
+                        AuthorImageUrl = reply.User.ProfileImageUrl,
+                        AuthorRating = reply.User.Rating,
+                        TimeCreated = reply.TimeCreated,
+                        ReplyContent = reply.Content,
+                        IsAuthorAdmin = IsAuthorAdmin(reply.User)
+                    }
+                );
         }
     }
 }
