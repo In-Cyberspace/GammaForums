@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data;
 using GammaForums.Service;
@@ -10,12 +11,16 @@ namespace GammaForums.Tests
     [TestFixture]
     public class Post_Service_Should
     {
-        [Test]
-        public void Return_Filtered_Results_Corresponding_To_Query()
+        [TestCase("quality", 3)]
+        [TestCase("hIgHeR", 1)]
+        [TestCase("earth", 0)]
+        public void Return_Filtered_Results_Corresponding_To_Query(
+            string query,
+            int expected)
         {
             DbContextOptions<ApplicationDbContext> options =
             new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase(databaseName: "Search_Database")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
             // Arrange
@@ -57,11 +62,11 @@ namespace GammaForums.Tests
             using (ApplicationDbContext ctx = new ApplicationDbContext(options))
             {
                 IPost postService = new PostService(ctx);
-                IEnumerable<Post> result = postService.GetFilteredPosts("Coffee");
+                IEnumerable<Post> result = postService.GetFilteredPosts(query);
                 int postCount = result.Count();
 
                 // Assert
-                Assert.AreEqual(3, postCount);
+                Assert.AreEqual(expected, postCount);
             }
         }
     }
