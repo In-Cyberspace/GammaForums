@@ -16,8 +16,7 @@ namespace GammaForums.Areas.Identity
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("ApplicationDbContextConnection")));
-
+                        context.Configuration.GetConnectionString("DefaultConnection")));
                 services.AddDefaultIdentity<ApplicationUser>(options
                     => options.SignIn.RequireConfirmedAccount = true)
                     .AddRoles<IdentityRole>()
