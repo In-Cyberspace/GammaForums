@@ -1,9 +1,6 @@
 ﻿body {
-  background-image: url("/images/theme/photo-of-starry-night-1421903.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+  background-color: #212121;
+  color: white;
   /* background-size: cover;  */
 }
 
@@ -55,10 +52,14 @@
   text-align: center;
   /* background-color: #dfff80; */
   /* background-color: #555; */
-  background-image: url("/images/theme/frontsplash6.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
   /* height: auto; */
+  padding: 20px;
+}
+
+/* Front page heading */
+.frontPageTitle {
+  background-color: #444;
+  text-align: center;
   padding: 20px;
 }
 
