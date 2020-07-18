@@ -1,4 +1,7 @@
-﻿namespace GammaForums.Models.Forum
+﻿using System.Collections.Generic;
+using GammaForums.Models.Post;
+
+namespace GammaForums.Models.Forum
 {
     /// <summary>
     /// The forum listing view model.
@@ -39,5 +42,11 @@
         /// Checks whether or not any recent post have been made on the forum.
         /// </summary>
         public bool HasRecentPost { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of all posts made on the forum.
+        /// </summary>
+        /// <value></value>
+        public IEnumerable<PostListingModel> AllPosts { get; set; }
     }
 }

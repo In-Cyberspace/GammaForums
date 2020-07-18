@@ -13,5 +13,7 @@ namespace GammaForums.Models.Forum
 
         /// <summary>Search within the forum</summary>
         public string SearchQuery { get; set; }
+
+        public bool EmptySearchResults { get; set; }
     }
 }
